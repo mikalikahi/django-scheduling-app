@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="table-responsive">
+
+<h3>Username: {{ object.user }}</h3>
+<h3>Name: {{ object.given_name }} {{ object.surname }}</h3>
+
+<h4>Email: {{ object.contact_email }}</h4>
+<script>
+    var email_string = "{{ object.contact_email }}";
+</script>
+<h4>Status: Student</h4>
+<h4>{{ object.course_content_preferences }}</h4>
+<h4>{{ object.other_personal_information }}</h4>
+
+</div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load static %}
+<div style="background-image: url('{% static "TLI_FLD/images/longdong.png" %}')";>
+    {% block content %}
+    <h1>Login</h1>
+    {% include "accounts/form.html" with form=form %}
+
+    {% endblock %}
+</div>

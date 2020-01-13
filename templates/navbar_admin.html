@@ -1,0 +1,35 @@
+<li class="nav-item dropdown mydropnav">
+    <a class="nav-link dropdown-toggle mydropnav" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Schedule
+    </a>
+    <div class="dropdown-menu mynav"  aria-labelledby="navbarDropdown">
+        <div class="dropdown-divider"><a class="dropdown-item" href="{% url 'student-classes:all-teachers-classes' %}">Upcoming Classes</a></div>
+        <div class="dropdown-divider"><a class="dropdown-item" href="{% url 'student-classes:all-past-teachers-classes' %}">Past Classes</a></div>
+    </div>
+</li>
+<li class="nav-item"><a href="{% url 'accounts:logout' %}">Log Out</a></li>
+<li class="nav-item"><a href="{% url 'admin:index' %}">Admin</a></li>
+<li class="nav-item dropdown mydropnav">
+    <a class="nav-link dropdown-toggle mydropnav" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Billing
+    </a>
+    <div class="dropdown-menu mynav"  aria-labelledby="navbarDropdown">
+        <div class="dropdown-divider"><a class="dropdown-item" href="{% url 'class-billing-admin:billing-accounts-list' %}">All Accounts</a></div>
+        <div class="dropdown-divider"><a class="dropdown-item" href="{% url 'class-billing-admin:low-hours' %}">Low Hours</a></div>
+    </div>
+</li>
+<li class="nav-item dropdown mydropnav">
+    <a class="nav-link dropdown-toggle mydropnav" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Message
+    </a>
+    <div class="dropdown-menu mynav"  aria-labelledby="navbarDropdown">
+        <div class="dropdown-divider"><a class="dropdown-item" href="{% url 'contacts:message_list_teacher_schedule' %}">Teacher's Schedules</a></div>
+        <div class="dropdown-divider"><a class="dropdown-item" href="{% url 'contacts:message_list_student_schedule' %}">Student's Schedules</a></div>
+        <div class="dropdown-divider"><a class="dropdown-item" href="{% url 'contacts:message_list_student_low_hours' %}">Purchase Reminder</a></div>
+        <div class="dropdown-divider"><a class="dropdown-item" href="{% url 'contacts:message_list_student' %}">All Students</a></div>
+        <div class="dropdown-divider"><a class="dropdown-item" href="{% url 'contacts:message_list_teacher' %}">All Teachers</a></div>
+        <div class="dropdown-divider"><a class="dropdown-item" href="{% url 'contacts:message_list_student_unconfirmed' %}">Unconfirmed Attendance Students</a></div>
+        <div class="dropdown-divider"><a class="dropdown-item" href="{% url 'contacts:message_list_teacher_unconfirmed' %}">Unconfirmed Attendance Teachers</a></div>
+        <div class="dropdown-divider"><a class="dropdown-item" href="{% url 'contacts:message_list' %}">All Users</a></div>
+    </div>
+</li>

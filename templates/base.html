@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Taipei Language Institute Department of Foreign Languages</title>
+
+        {% load bootstrap3 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript jquery=1 %}
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap-theme.min.css" integrity="sha384-jzngWsPS6op3fgRCDTESqrEJwRKck+CILhJVO5VvaAZCq8JYf8HsR/HPpBOOPZfR" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Francois+One|Hind+Siliguri|Teko" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'TLI_FLD/css/master.css' %}">
+    </head>
+    <body style="background-color:black">
+        {% include 'navbar.html' %}
+
+        <div class="content container mycontent">
+            <div class="jumbotron">
+                {% block content %}
+
+                {% endblock %}
+            </div>
+        </div>>
+        {% include 'footer.html' %}
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script type="text/javascript" scr="{% static 'TLI_FLD/js/master.js' %}"></script>
+        <script type="text/javascript">
+            $(document).ready(function(event) {
+            //  $('#update-class-status').click(function(){
+            //    return confirm("Are you sure that you would like to update the class status?");
+            //  });
+
+            //  $('#update-profile').click(function() {
+            //    return alert("This profile has been updated");
+            //  });
+
+              $(function() {
+                setTimeout(function() {
+                  $('.alert').slideUp(2000);
+                }, 5000);
+              });
+              $(document).on('click', '#attendance', function(event) {
+                event.preventDefault();
+                var pk = $(this).attr('value');
+                $.ajax({
+                  type: 'POST',
+                  url: '{% url "student-classes:attendance" %}',
+                  data: {'id':pk, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                  dataType: 'json',
+                  success: function(response) {
+                    $('#attendance-section').html(response['form']);
+                  },
+                  error: function(rs, e) {
+                    console.log(rs.responseText);
+                  },
+                });
+              });
+
+              $('#teacher-attendance-content').hide();
+              $('#teacher-under').click(function() {
+                  $("#teacher-attendance-content").show(1000);
+                  $('#teacher-under').hide();
+                });
+
+                $('#teacher-hide').click(function() {
+                    $("#teacher-attendance-content").hide(1000);
+                    $('#teacher-under').show();
+                  });
+
+              $('#class-status-content').hide();
+              $('#class-status-under').click(function() {
+                  $("#class-status-content").show(1000);
+                  $('#class-status-under').hide();
+                });
+
+              $('#edit-profile-content').hide();
+              $('#edit-profile-under').click(function() {
+                  $("#edit-profile-content").show(1000);
+                  $('#edit-profile-under').hide();
+                });
+
+              $(document).on('submit', '.update-profile-form', function(event) {
+                event.preventDefault();
+                $.ajax({
+                  type: 'POST',
+                  url: $(this).attr('action'),
+                  data: $(this).serialize(),
+                  dataType: 'json',
+                  success: function(response) {
+                    $('#edit-profile-form').html(response['form']);
+                    $('#profile_details').html(`<h3>Username: ${response['username']}</h3>
+                                                <h3>Name: ${response['given_name']} ${response['surname']}</h3>
+                                                <h4>Email: ${response['contact_email']}</h4>
+                                                <h4>Status: ${response['status']}</h4>
+                                                <h4>${response['course_content_preferences']}</h4>
+                                                <h4>${response['other_personal_information']}</h4><br/>`);
+                    $('#edit-profile-under').show();
+                    $('#edit-profile-content').hide();
+
+                  },
+                  error: function(rs, e) {
+                    console.log(e);
+                    console.log(rs.restponseText);
+                  },
+                });
+              });
+
+              $(document).on('submit', '.update-message-form', function(event) {
+                  event.preventDefault();
+                  $.ajax({
+                    type: 'POST',
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    dataType: 'json',
+                    success: function(response) {
+                      $('#show_message_form').html(response['form']);
+                      $('#message_details').html(`${response['title']}<br/>
+                                                  <p>${response['message_text']}</p><br/>
+                                                `)
+                      $('#message_details').show();
+                      $('.showunder').show();
+                      $('#show_message_form').hide();
+                    },
+                    error: function(rs, e) {
+                      console.log(e);
+                      console.log(rs.responseText);
+                    },
+                  });
+              });
+
+              $('.under').hide();
+
+              $('.showunder').click(function() {
+                $(".under").show(1000);
+                $('.showunder').hide();
+              });
+
+              $('.hideunder').click(function() {
+                $(".under").hide(1000);
+                $('.showunder').show();
+              });
+            });
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block content %}
+    <h3>Recipients:</h3>
+    <ul>
+        {% if query %}
+            {% for queried_user in query %}
+            <li>{{ queried_user.contact_email }}</li>
+            {% endfor %}
+        {% endif %}
+        {% if low_student_hours_dict %}
+
+            {% for key, value in low_student_hours_dict.items %}
+                {{ key }}: <ul>
+                            {% for v in value %}<li>{{ v }}</li>{% endfor %}
+                           </ul>
+            {% endfor %}
+        {% endif %}
+    </ul>
+    <div id="message_details">
+        <h4>{{ object.title }}</h4>
+        <p>{{ object.message_text }}</p>
+    </div>
+    <div>
+        <button id="show_message_edit" class="showunder">Edit message</button>
+    </div>
+
+    <div class="under" id="show_message_form" style="display:none;">
+        {% include 'contacts/message_form_update.html' %}
+        <br/>
+        <button id="cancel_update" class="hideunder">Cancel Update</button>
+    </div>
+    <br/>
+    <div>
+        <a class="btn btn-primary" id="message-btn" href={% url 'contacts:message_sent' id=object.id %}>Send Message</a>
+    </div>
+
+{% endblock %}

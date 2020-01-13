@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load bootstrap3 %}
+    <h2>{{ heading }}</h2>
+    {% for object in queryset %}
+         <a href="{% url 'class-billing-admin:class-billing-detail' object.slug %}">{{ object|title }}</a><br/>
+    {% endfor %}
+
+{% endblock %}

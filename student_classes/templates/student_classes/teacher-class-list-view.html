@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2><span class="glyphicon glyphicon-calendar"></span>{{ heading }} for {{ user_teacher }}</h2>
+
+{% for scheduled_class in teacher_schedule_query %}
+<li>
+    <a href="{% url 'student-classes:teacher-daily' scheduled_class.slug %}">{{ scheduled_class.scheduled_date }}</a>
+</li>
+{% endfor %}
+
+{% endblock %}

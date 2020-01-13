@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load bootstrap3 %}
+{% include 'alerts.html' %}
+<h2>Update Class Status</h2>
+<h3>If you would like to reschedule or cancel the class,<br>
+Please state your name and reason for rescheduling <br>
+in the box below. Thank you!</h3>
+<form method="POST" action=".">{% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" class="btn btn-default" id="update-class-status" value="Update">
+</form>
+{% endblock %}

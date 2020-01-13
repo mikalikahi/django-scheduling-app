@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load bootstrap3 %}
+{% include 'alerts.html' %}
+<div class="table-responsive">
+    <div id="profile_details">
+        <h3>Username: {{ object.username }}</h3>
+        <h3>Name: {{ obj.given_name }} {{ obj.surname }}</h3>
+        <h4>Email: {{ object.profile.contact_email }}</h4>
+        <script>
+            var email_string = "{{ obj.contact_email }}";
+            if(email_string == 'None'){
+                alert("Please edit your profile and enter in an email");
+                }
+        </script>
+        <h4>Status: {% if obj.teacher %}Teacher {% else %}Student {% endif %}</h4>
+        <h4>{{ obj.course_content_preferences }}</h4>
+        <h4>{{ obj.other_personal_information }}</h4>
+    </div>
+</div>
+<button id="edit-profile-under" class="btn btn-default">Edit Profile</button><br/>
+<div id="edit-profile-content" style="display:none;">
+    <div id="edit-profile-form">
+        {% include 'accounts/profile-update-view.html' %}
+    </div>
+</div>
+{% endblock %}

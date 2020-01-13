@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="table-responsive">
+<h2><span class="glyphicon glyphicon-calendar"></span> Daily Schedule for {{ user.profile.given_name }} {{ user.profile.surname }} on {{ object }}</h2>
+
+{% if object.seven_thirty_eight_twenty != Null %}
+<p>7:30-8:20: <a href="/accounts/{{ object.seven_thirty_eight_twenty.id }}">
+    {{ object.seven_thirty_eight_twenty }} </a></p> {% endif %}
+{% if object.eight_thirty_nine_twenty != Null %}
+<p>8:30-9:20: <a href="/accounts/{{ object.eight_thirty_nine_twenty.id }}">
+    {{ object.eight_thirty_nine_twenty }} </a></p> {% endif %}
+{% if object.nine_thirty_ten_twenty != Null %}
+<p>9:30-10:20: <a href="/accounts/{{ object.nine_thirty_ten_twenty.id }}">
+    {{ object.nine_thirty_ten_twenty }} </a></p> {% endif %}
+{% if object.ten_thirty_eleven_twenty != Null %}
+<p>10:30-11:20: <a href="/accounts/{{ object.ten_thirty_eleven_twenty.id }}">
+    {{ object.ten_thirty_eleven_twenty }} </a></p> {% endif %}
+{% if object.elevent_thirty_twelve_twenty != Null %}
+<p>11:30-12:20: <a href="/accounts/{{ object.elevent_thirty_twelve_twenty.id }}">
+    {{ object.elevent_thirty_twelve_twenty }} </a></p> {% endif %}
+{% if object.twelve_forty_thirteen_thirty != Null %}
+<p>12:40-13:30: <a href="/accounts/{{ object.twelve_forty_thirteen_thirty.id }}">
+    {{ object.twelve_forty_thirteen_thirty }} </a></p> {% endif %}
+{% if object.thirteen_forty_fourteen_thirty != Null %}
+<p>13:40-14:30: <a href="/accounts/{{ object.thirteen_forty_fourteen_thirty.id }}">
+    {{ object.thirteen_forty_fourteen_thirty }} </a></p> {% endif %}
+{% if object.fourteen_forty_fifteen_thirty != Null %}
+<p>14:40:15:30: <a href="/accounts/{{ object.fourteen_forty_fifteen_thirty.id }}">
+    {{ object.fourteen_forty_fifteen_thirty }} </a></p> {% endif %}
+{% if object.fifteen_forty_sixteen_thirty != Null %}
+<p>15:40-16:30: <a href="/accounts/{{ object.fifteen_forty_sixteen_thirty.id }}">
+    {{ object.fifteen_forty_sixteen_thirty }} </a></p> {% endif %}
+{% if object.sixteen_forty_seventeen_thirty != Null %}
+<p>16:40-17:30: <a href="/accounts/{{ object.sixteen_forty_seventeen_thirty.id }}">
+    {{ object.sixteen_forty_seventeen_thirty }} </a></p> {% endif %}
+{% if object.seventeen_forty_eighteen_thirty != Null %}
+<p>17:40-18:30: <a href="/accounts/{{ object.seventeen_forty_eighteen_thirty.id }}">
+    {{ object.seventeen_forty_eighteen_thirty }} </a></p> {% endif %}
+{% if object.eighteen_forty_nineteen_thirty != Null %}
+<p>18:40-19:30: <a href="/accounts/{{ object.eighteen_forty_nineteen_thirty.id }}">
+    {{ object.eighteen_forty_nineteen_thirty }} </a></p> {% endif %}
+{% if object.nineteen_forty_twenty_thirty != Null %}
+<p>19:40-20:30: <a href="/accounts/{{ object.nineteen_forty_twenty_thirty.id }}">
+    {{ object.nineteen_forty_twenty_thirty }} </a></p> {% endif %}
+{% if object.twenty_forty_twenty_one_thirty != Null %}
+<p>20:40-21:30: <a href="/accounts/{{ object.twenty_forty_twenty_one_thirty.id }}">
+    {{ object.twenty_forty_twenty_one_thirty }} </a></p> {% endif %}
+</div>
+{% endblock %}

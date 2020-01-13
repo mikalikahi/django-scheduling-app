@@ -1,0 +1,7 @@
+{% load bootstrap3 %}
+
+<form class="form-group" method="POST" action=".">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" class="btn btn-default" value="Submit">
+</form>

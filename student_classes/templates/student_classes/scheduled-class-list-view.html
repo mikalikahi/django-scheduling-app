@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2><span class="glyphicon glyphicon-calendar"></span>{{ heading }} for {{ user_student }}</h2>
+
+    <table class="table table-dark">
+        <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Time</th>
+              <th scope="col">Teacher</th>
+              <th scope="col">Students</th>
+              <th scope="col">Class Location</th>
+            </tr>
+        </thead>
+          <tbody>
+          {% for date in student_schedule_query %}
+            <tr>
+                <td><a href="/student-classes/{{ date.id }}">{{ date.scheduled_date }}</a></td>
+              <td>{{ date.scheduled_time }}</td>
+              <td>{{ date.teacherclass.teacher_scheduled }}</td>
+              <td>{% for student in date.student_scheduled.all %}
+                    {% if forloop.counter > 1 %}| {% endif %}
+                    {{ student }}
+                  {% endfor %}
+              </td>
+              <td>{% if date.classinformation.location != None %}{{ date.classinformation.location|title }}{% endif %}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+When object created or saved: TeacherCumulativeCustomBillingPayment
+Object fields to be queried (model is replaced by 'instance'): 
+instance.cumulative_custom_billing_hours.billing_hours_period
+instance.cumulative_custom_billing_hours.teacher_billed
+
+When object created or saved: TeacherTotalBillingHours
+Object to be queried (model is replaced by 'instance'):
+instance.teacher_billing_hours.billing #teacherbillingperiod
+instance.teacher_billing_hours.teacher_billed
+
+Create this model or get_or_save: TeacherCumulativeMonthlyPayment
+Total value of TeacherCumulativeMonthlyPayment created with the fields: paid_teacher, payment_period
+for the field: total_cumulative_payment
+
+will be the total of the corresponding: TeacherCumulativeCustomBillingPayment.total_custom_cumulative_payment
+and: TeacherTotalBillingHours.total_billed_inside_hours
+and: TeacherTotalBillingHours.total_billed_outside_hours

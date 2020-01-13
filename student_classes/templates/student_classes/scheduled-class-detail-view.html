@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load bootstrap3 %}
+{% include 'alerts.html' %}
+<div class="table-responsive">
+    <h1 class="class_info">Class Information</h1>
+    <h2 class="class_info">Scheduling</h2>
+    <h3>Class is upcoming: {{ class_is_upcoming }}</h3>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Time</th>
+              <th scope="col">Teacher</th>
+              <th scope="col">Location</th>
+              <th scope="col">Students</th>
+            </tr>
+        </thead>
+          <tbody>
+            <tr>
+              <td>{{ obj.scheduled_date }}</td>
+              <td>{{ obj.scheduled_time }}</td>
+              <td><a href="/accounts/{{ obj.teacherclass.teacher_scheduled.id }}">{{ obj.teacherclass.teacher_scheduled }}</a></td>
+              <td>{{ object.location }}</td>
+              <td>{% for student in obj.student_scheduled.all %}
+                  {% if forloop.counter > 1 %}| {% endif %}
+                <a href="/accounts/{{ student.id }}">{{ student }}</a>
+                {% endfor %}
+              </td>
+            </tr>
+          </tbody>
+    </table>
+    <h2 class="class_info">Class Records</h2>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+              <th scope="col">Class Status</th>
+              <th scope="col">Class Contents</th>
+                <th scope="col">
+                  {% if object.class_status == 'cancellation_request' %}Student Absence Request Reason
+                  {% else %}Other Information{% endif %}</th>
+              {% if current_user.profile.teacher %}<th scope="col">Attendance</th>{% endif %}
+            </tr>
+        </thead>
+          <tbody>
+            <tr>
+              <td>{{ object.class_status|title }}</td>
+              <td>{{ object.class_content }}</td>
+              <td>{{ object.absence_request_reason  }}</td>
+              {% if current_user.profile.teacher %}<td>{{ object.teacher_attended }}</td>{% endif %}
+            </tr>
+          </tbody>
+    </table>
+</div>
+
+{% if current_user.profile.teacher %}
+    <button id="teacher-under" class="btn btn-default">Update Class Information</button><br/>
+    <div id="teacher-attendance-content">
+
+        <form method="post" class="update-form" action=".">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <input type="submit" value="Submit Class Information" class="btn btn-primary" id="teacher-class-info-btn">
+        </form>
+    <br/>
+    <br/>
+    </div>
+{% else %}
+<h3 class="class_info">Attendance</h3>
+<div style="text-align:center;">
+    <button id="class-status-under" class="btn btn-default">Request Absence/Scheduling Update</button><br/>
+</div>
+<div id="class-status-content">
+    <form method="post" class="class-status-form" action=".">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" value="Update Class Information" class="btn btn-primary" id="class-status-btn">
+    </form>
+
+</div>
+    {% if class_is_upcoming == False %}
+    <div id="attendance-section">
+        {% include 'student_classes/attendance_section.html' %}
+    </div>
+    {% endif %}
+
+{% endif %}
+
+</div>
+
+{% endblock %}

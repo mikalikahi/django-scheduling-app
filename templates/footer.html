@@ -1,0 +1,31 @@
+{% load staticfiles %}
+<footer id="myFooter">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <h5>Get started</h5>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'accounts:register' %}">Sign up</a></li>
+                    <li><a href="{% url 'accounts:login' %}">Log In</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-3">
+                <h5>About us</h5>
+                <ul>
+                    <li><a href="{% url 'info' %}">Company Information</a></li>
+                    <li><a href="{% url 'contact' %}">Contact us</a></li>
+                    <li><a href="{% url 'employment' %}">Employment</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-3 info">
+                <h5>Information</h5>
+                <p>Taipei Language Institute offers foreign language instruction in English, Japanese, and a variety of other
+                    languages to students of all ages.</p>
+            </div>
+            <div class="col-sm-3">
+                <img src="{% static 'TLI_FLD/images/TLI_logo_color_resize.png' %}" alt="Taipei Language Institute" class="loco_logo"/>
+            </div>
+        </div>
+    </div>
+</footer>

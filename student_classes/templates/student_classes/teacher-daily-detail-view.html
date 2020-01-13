@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="table-responsive">
+<h2><span class="glyphicon glyphicon-calendar"></span> Daily Schedule for {{ user.profile.given_name }} {{ user.profile.surname }} on {{ scheduled_date }}</h2>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+              <th scope="col">Class Time</th>
+              <th scope="col">Location</th>
+              <th scope="col">Status</th>
+              <th scope="col">Student(s) Information</th>
+              <th scope="col">Class Information</th>
+            </tr>
+        </thead>
+          <tbody>
+          {% for obj in user_query %}
+            <tr>
+              <td>{{ obj.scheduled_time }}</td>
+              <td>{% if obj.classinformation.location != None %}{{ obj.classinformation.location }}{% endif %}</td>
+              <td>{{ obj.classinformation.class_status|title }}</td>
+              <td>{% for student in obj.student_scheduled.all %}
+                  {% if forloop.counter > 1 %}| {% endif %}
+                <a href="/accounts/{{ student.id }}">{{ student }}</a>
+                {% endfor %}
+              </td>
+                <td><a href="/student-classes/{{ obj.id }}">Update Class Information</a></td>
+            </tr>
+          {% endfor %}
+          </tbody>
+    </table>
+</div>
+{% endblock %}

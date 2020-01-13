@@ -1,0 +1,16 @@
+<form action="{% url 'student-classes:attendance' %}" method="post">
+    {% csrf_token %}
+    {% if attended %}
+    <h4>The following students attended:
+    {% for student in object.students_who_attended %}
+        {{ student }}<br/>
+    {% endfor %}</h4>
+        <button type="submit" id="attendance" name="object_id" value="{{ object.pk }}" class="btn btn-primary">Disconfirm Attendance</button>
+    {% else %}
+    <h4>The following students attended:
+    {% for student in object.students_who_attended %}
+        {{ student }}<br/>
+        {% endfor %}</h4>
+        <button type="submit" id="attendance" name="object_id" value="{{ object.pk }}" class="btn btn-primary">Confirm Attendance</button>
+    {% endif %}
+</form>

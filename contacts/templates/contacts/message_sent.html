@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>The message has been sent!</h2>
+    <h6>Recipients:</h6>
+    <ul>
+        {% if user_query %}
+            {% for user in user_query %}
+            <li>{{ user.contact_email }}</li>
+            {% endfor %}
+        {% endif %}
+
+        {% if low_student_hours_dict %}
+
+            {% for key, value in low_student_hours_dict.items %}
+                {{ key }}: <ul>
+                            {% for v in value %}<li>{{ v }}</li>{% endfor %}
+                           </ul>
+            {% endfor %}
+        {% endif %}
+    </ul>
+
+</div>
+{% endblock %}

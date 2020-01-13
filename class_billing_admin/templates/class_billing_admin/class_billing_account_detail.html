@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load bootstrap3 %}
+
+
+<h2>{{ object|title }}</h2>
+<h3>Account ID: {{ object.account_id }}</h3>
+<h3>Students in account:</h3>
+    <ul>
+        {% for account in object.student_account.all %}
+        <li>{{ account|title }}</li>
+        {% endfor %}
+    </ul>
+<h3>Number of hours purchased: {{ object.purchased_class_hours }}</h3>
+
+
+{% endblock %}
