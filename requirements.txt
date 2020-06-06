@@ -1,4 +1,4 @@
-Django==1.11.16
+Django==1.11.29
 django-admin-rangefilter==0.5.3
 django-bootstrap3==11.0.0
 pytz==2018.7
